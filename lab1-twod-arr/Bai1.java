@@ -1,48 +1,72 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 
 
 public class Bai1 {
-    // (i) Viet ham nhap 0 < X <= value
-    public static int NhapSo() {
-        int n = 0;
-        int value = 100;
-        System.out.print("Nhap so tu (1-"+ value + "): ");
-        try {
-            do { 
+    public static final int ROWS = 100;
+    public static final int COLS = 200;
+    public static final int[][] table = new int[ROWS][COLS];
+
+
+    // Method (i) Viet ham nhap 0 < X <= value
+    public static int NhapSo(String str, int value) throws IOException {
+        int n;
+        System.out.print(str + " Nhap so tu (1- 100): ");
+        do {
             BufferedReader in = new BufferedReader(
                 new InputStreamReader(System.in));
             String s;
             s = in.readLine();
             n = Integer.parseInt(s);
-            if ((n<=0)||(n>100)) System.out.print("Nhap lai: ");
-            } while((n <= 0)||(n > 100));
-        } 
-        catch (Exception e) {
-            System.out.print("Nhap loi! ");
-            return NhapSo();
-        }
+            if ((n<=0)||(n>value)) System.out.print("Nhap lai: ");
+            } while((n <= 0)||(n > value));
+
         System.out.println("So vua nhap: "+n);
         return n;
     }
-    // TODO: Mục tiêu là nhập thủ công, không dùng vòng lặp  
-    public static void NhapMang2Chieu () {
-        int rows = 100;
-        int cols = 200;
-        int t,i;
-        int[][] table = new int[rows][cols];
-        for (t = 0; t < rows; ++t) {
-            for (i = 0; i < cols; ++i) {
-                table[t][i] = (t*cols)+i+1;
-                // TODO: Đưa câu lệnh dưới đây vào hàm XuatMang2Chieu
-                System.out.print(table[t][i]+" ");
+    // Method (ii) Viet ham nhap vao mang 2 chieu
+    public static void NhapMang2Chieu (int[][] a, int m, int n) {
+        int rows,cols;
+        for (rows = 0; rows < m; ++rows) {
+            for (cols = 0; cols < n; ++cols) {
+                table[rows][cols] = (rows * m) + cols + 1;
             }
-            // TODO: Đưa câu lệnh dưới đây vào hàm XuatMang2Chieu (tương tự)
+        }
+    }
+
+    // Method (iii) Viet ham xuat mang hai chieu
+    public static void XuatMang2Chieu(int[][] a, int m, int n) {
+        System.out.println("Ma tran vua tao voi " + m + " dong va " + n + " cot!");
+        int rows, cols = 0;
+        for (rows = 0; rows < m; ++rows) {
+            for (cols = 0; cols < n; ++cols) {
+                System.out.print(" "+ a[rows][cols]);
+            }
             System.out.println();
         }
     }
-    public static void main(String[] args) {
-    NhapMang2Chieu();
+
+    // Method (iv) Viet ham tinh tong tat ca cac phan tu co trong mang
+    public static int TongMang(int[][] a, int m, int n) {
+        int sum = 0;
+        for (int rows = 0; rows < m; ++rows) {
+            for (int cols = 0; cols < n; ++cols) sum += a[rows][cols];
+        }
+        return sum;
+    }
+
+    // Method (v) Viet ham tinh tong cac phan tu duong bien
+    public static int TongBienMang(int[][] a, int m, int n) {
+        return 0;
+    }
+    public static void main(String[] args) throws IOException {
+        int rows, cols;
+        int[][] a = new int[ROWS][COLS];
+        rows = NhapSo("[Dong]", ROWS);
+        cols = NhapSo("[Cot]", COLS);
+        NhapMang2Chieu(table, rows, cols);
+        XuatMang2Chieu(table, rows, cols);
+        System.out.print("Tong tat ca cac bien trong mang: " + TongMang(table, rows, cols));
+        System.out.println();
         System.out.println("Complete!");
     }
 }
