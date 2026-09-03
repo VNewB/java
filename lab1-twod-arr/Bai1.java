@@ -28,7 +28,7 @@ public class Bai1 {
         int rows,cols;
         for (rows = 0; rows < m; ++rows) {
             for (cols = 0; cols < n; ++cols) {
-                table[rows][cols] = (rows * m) + cols + 1;
+                a[rows][cols] = (rows * m) + cols + 1;
             }
         }
     }
@@ -36,7 +36,7 @@ public class Bai1 {
     // Method (iii) Viet ham xuat mang hai chieu
     public static void XuatMang2Chieu(int[][] a, int m, int n) {
         System.out.println("Ma tran vua tao voi " + m + " dong va " + n + " cot!");
-        int rows, cols = 0;
+        int rows, cols;
         for (rows = 0; rows < m; ++rows) {
             for (cols = 0; cols < n; ++cols) {
                 System.out.print(" "+ a[rows][cols]);
@@ -60,7 +60,6 @@ public class Bai1 {
     }
     public static void main(String[] args) throws IOException {
         int rows, cols;
-        int[][] a = new int[ROWS][COLS];
         rows = NhapSo("[Dong]", ROWS);
         cols = NhapSo("[Cot]", COLS);
         NhapMang2Chieu(table, rows, cols);
