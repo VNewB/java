@@ -1,10 +1,9 @@
 import java.io.*;
 
 
-public class Bai1 {
+public class Bai1_HD {
     public static final int ROWS = 100;
     public static final int COLS = 200;
-    public static final int[][] table = new int[ROWS][COLS];
 
 
     // Method (i) Viet ham nhap 0 < X <= value
@@ -64,6 +63,7 @@ public class Bai1 {
         }
         return tmp;
     }
+    // (vi) Liet ke cac so may man
     static boolean LaSoMayMan (int input) {
         while (input > 0) {
             int luck = input % 10;
@@ -73,7 +73,7 @@ public class Bai1 {
         return true;
     }
 
-    public static void LietKeSoMayMan (int a[][], int m, int n) {
+    public static void LietKeSoMayMan (int[][] a, int m, int n) {
         for (int rows = 0; rows < m; ++rows) {
             for (int cols = 0; cols < n; ++cols) {
                 if (LaSoMayMan(a[rows][cols])) System.out.printf(" %2d ", a[rows][cols]);
@@ -81,7 +81,8 @@ public class Bai1 {
         }
     }
     public static void main(String[] args) throws IOException {
-        int rows, cols;
+        int rows = 0, cols = 0;
+        int[][] table = new int[rows][cols];
         rows = NhapSo("[Dong]", ROWS);
         cols = NhapSo("[Cot]", COLS);
         NhapMang2Chieu(table, rows, cols);
