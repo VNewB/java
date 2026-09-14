@@ -61,7 +61,7 @@ public class Array2 {
         table = new int[rows][cols];
         for (int temp_rows = 0; temp_rows < rows; temp_rows++) {
             for (int temp_cols = 0; temp_cols < cols; temp_cols++) {
-                table[temp_rows][temp_cols] = (temp_rows * icols) + temp_cols + 1;
+                table[temp_rows][temp_cols] = (temp_rows * icols) - temp_cols * irows;
             }
         }
     }
@@ -80,6 +80,44 @@ public class Array2 {
         System.out.println();
     }
 
+    static boolean LaSoNguyenTo(int n) {
+        if (n < 2) {
+            return false;
+        }
+
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    static boolean LaSoChinhPhuong(int n) {
+        if (n < 0) {
+            return false;
+        }
+
+        int sqrt = (int) Math.sqrt(n);
+        return sqrt * sqrt == n;
+    }
+
+    public static boolean LaSoHoanThien(int n) {
+        if (n <= 1) {
+            return false;
+        }
+
+        int sum = 0;
+
+        for (int temp = 1; temp <= n / 2; temp++) {
+            if (n % temp == 0) {
+                sum += temp;
+            }
+        }
+
+        return sum == n;
+    }
     public static int SoLonNhat() {
         int result = -1;
         startDuyetMang();
@@ -107,23 +145,17 @@ public class Array2 {
         else System.out.println("Khong co so duong lon nhat mang!");
         return result;
     }
+
     public static int SoNguyenToDauTien() {
-        int result = -1;
         startDuyetMang();
+
         while (nextDuyetMang()) {
-            if (gtemp < 2) {
-                continue;
+            if (LaSoNguyenTo(gtemp)) {
+                return gtemp;
             }
-            boolean isPrime = true;
-            for (int temp = 2; temp * temp <= gtemp; temp++) {
-                if (gtemp % temp == 0) {
-                    isPrime = false;
-                    break;
-                }
-            }
-            if (isPrime) return gtemp;
         }
-        return 0;
+
+        return -1;
     }
 
     public static int SoChanLonNhat() {
@@ -146,35 +178,25 @@ public class Array2 {
 
     public static int SoNguyenToLonNhat() {
         int result = -1;
+
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp < 2) {
-                continue;
-            }
-            boolean isPrime = true;
-            for (int temp = 2; temp * temp <= gtemp; temp++) {
-                if (gtemp % temp == 0) {
-                    isPrime = false;
+            if (LaSoNguyenTo(gtemp)) {
+                if (gtemp > result) {
+                    result = gtemp;
                 }
             }
-            if (isPrime) result = gtemp;
         }
         return result;
     }
-
     public static int SoHoanThienNhoNhat() {
         int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
-            int sum = 0;
-            for (int temp = 1; temp < gtemp; temp++) {
-                if (gtemp % temp == 0)
-                    sum += temp;
-            }
-
-            if (sum == gtemp) {
-                if (result == -1 || gtemp < result)
-                    result = gtemp;
+            int temp = 0;
+            if (LaSoHoanThien(gtemp)) temp = gtemp;
+            if (result > temp) {
+                result = temp;
             }
         }
         return result;
@@ -184,8 +206,7 @@ public class Array2 {
         int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
-            int sqrt = (int) Math.sqrt(gtemp);
-            if (sqrt * sqrt == gtemp) {
+            if (LaSoChinhPhuong(gtemp)) {
                 if (result < gtemp) result = gtemp;
             }
         }
@@ -196,11 +217,7 @@ public class Array2 {
         int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
-            int sum = 0;
-            for (int temp = 1; temp < gtemp; temp++) {
-                if (gtemp % temp == 0) sum += temp;
-                if (sum == gtemp) return sum;
-            }
+            if (LaSoHoanThien(gtemp)) result = gtemp;
         }
         return result;
     }
@@ -238,6 +255,329 @@ public class Array2 {
         }
         return result;
     }
+
+    public static void LietKeDongCoGiaTriAm() {
+        startDuyetMang();
+        boolean below_zero = false;
+        while (nextDuyetMang()) {
+            if (gtemp < 0) {
+                below_zero = true;
+            }
+
+            if (currentCol == 0) {
+                if (below_zero) {
+                    System.out.println("Dong " + currentRow + " co gia tri am!");
+                }
+                below_zero = false;
+            }
+        }
+        stopDuyetMang();
+    }
+
+    public static void LietKeDongCoSoNguyenTo() {
+        boolean Prime = false;
+
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (LaSoNguyenTo(gtemp)) {
+                Prime = true;
+            }
+            // currentCol == 0 nghĩa là vừa duyệt xong một dòng
+            if (currentCol == 0) {
+                if (Prime) {
+                    System.out.println("Dong " + currentRow + " co so nguyen to!");
+                }
+                Prime = false;
+            }
+        }
+        stopDuyetMang();
+    }
+    public static void LietKeDongChan() {
+        boolean isEven = false;
+
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (gtemp % 2 == 0) {
+                isEven = true;
+            }
+
+            if (currentCol == 0) {
+                if (isEven) {
+                    System.out.println("Dong " + currentRow + " co so chan!");
+                }
+                isEven = false;
+            }
+        }
+        stopDuyetMang();
+    }
+
+    public static void LietKeCotSoChinhPhuong() {
+        boolean[] isSquare = new boolean[cols];
+
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            int temp_col = (currentCol == 0) ? cols - 1 : currentCol - 1;
+
+            if (LaSoChinhPhuong(gtemp)) {
+                isSquare[temp_col] = true;
+            }
+        }
+        stopDuyetMang();
+
+        for (int temp = 0; temp < cols; temp++) {
+            if (isSquare[temp]) {
+                System.out.println("Cot " + temp + " co so chinh phuong!");
+            }
+        }
+    }
+    
+    public static void LietKeDongToanAm() {
+        boolean all_Below0 = true;
+
+        startDuyetMang();
+
+        while (nextDuyetMang()) {
+            if (gtemp >= 0) {
+                all_Below0 = false;
+            }
+
+            if (currentCol == 0) {
+                if (all_Below0) {
+                    System.out.println("Dong " + currentRow + " toan so am!");
+                }
+                all_Below0 = true;
+            }
+        }
+
+        stopDuyetMang();
+    }
+
+    public static void LietKeDongToanChan() {
+        boolean allEven = true;
+
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (gtemp % 2 != 0) {
+                allEven = false;
+            }
+
+            // Vừa duyệt xong một dòng
+            if (currentCol == 0) {
+                if (allEven) {
+                    System.out.println("Dong " + currentRow + " toan so chan!");
+                }
+                allEven = true;
+            }
+        }
+        stopDuyetMang();
+    }
+
+    public static void LietKeDongGiamDan() {
+        startDuyetMang();
+
+        boolean decrease = true;
+        int prev = 0;
+        while (nextDuyetMang()) {
+            if (currentCol == 1) {
+                prev = gtemp;
+            }
+            else {
+                if (gtemp > prev) {
+                    decrease = false;
+                }
+                prev = gtemp;
+            }
+
+            if (currentCol == 0) {
+                if (decrease) {
+                    System.out.println("Dong " + currentRow + " co gia tri giam dan!");
+                }
+                decrease = true;
+            }
+        }
+
+        stopDuyetMang();
+    }
+
+    public static void LietKeDongCoTongLonNhat() {
+        int dongMax = DongCoTongLonNhat();
+        int max = 0;
+        int temp = 0;
+
+        // Tính tổng của dòng lớn nhất
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (currentRow == dongMax) {
+                max += gtemp;
+            }
+        }
+
+        // Liệt kê các dòng có tổng bằng max
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            temp += gtemp;
+
+            if (currentCol == cols - 1) {
+                if (temp == max) {
+                    System.out.println("Dong " + currentRow + " co tong dong lon nhat!");
+                }
+                temp = 0;
+            }
+        }
+
+        stopDuyetMang();
+    }
+
+    public static void LietKeCotCoTongNhoNhat() {
+        int cotMin = CotCoTongNhoNhat();
+        int min = 0;
+        int temp = 0;
+
+        // Tính tổng của cột nhỏ nhất
+        for (int temp_row = 0; temp_row < rows; temp_row++) {
+            min += table[temp_row][cotMin];
+        }
+
+        // Liệt kê các cột có tổng bằng min
+        for (int temp_col = 0; temp_col < cols; temp_col++) {
+            temp = 0;
+            for (int temp_row = 0; temp_row < rows; temp_row++) {
+                temp += table[temp_row][temp_col];
+            }
+
+            if (temp == min) {
+                System.out.println("Cot " + temp_col + " co tong cot nho nhat!");
+            }
+        }
+    }
+
+    public static void LietKeDongNhieuSoChanNhat() {
+        int max = 0;
+        int count = 0;
+
+        startDuyetMang();
+
+        while (nextDuyetMang()) {
+            if (gtemp % 2 == 0) {
+                count++;
+            }
+
+            // currentCol == 0: vừa duyệt xong một dòng
+            if (currentCol == 0) {
+                if (count > max) {
+                    max = count;
+                }
+                count = 0;
+            }
+        }
+
+        // Duyệt lại để liệt kê các dòng có nhiều số chẵn nhất
+        startDuyetMang();
+        count = 0;
+
+        while (nextDuyetMang()) {
+            if (gtemp % 2 == 0) {
+                count++;
+            }
+
+            if (currentCol == 0) {
+                if (count == max) {
+                    System.out.println("Dong " + currentRow + " co nhieu so chan nhat!");
+                }
+                count = 0;
+            }
+        }
+
+        stopDuyetMang();
+    }
+
+    public static void LietKeDongCoNhieuSoNguyenToNhat() {
+        int max = 0;
+        int soNguyenTo = 0;
+
+        startDuyetMang();
+
+        while (nextDuyetMang()) {
+            if (LaSoNguyenTo(gtemp)) {
+                soNguyenTo++;
+            }
+
+            // Vừa duyệt xong một dòng
+            if (currentCol == 0) {
+                if (soNguyenTo > max) {
+                    max = soNguyenTo;
+                }
+                soNguyenTo = 0;
+            }
+        }
+
+        // Duyệt lại để in các dòng có số nguyên tố = max
+        startDuyetMang();
+        int temp_row = 0;
+
+        while (nextDuyetMang()) {
+            if (LaSoNguyenTo(gtemp)) {
+                soNguyenTo++;
+            }
+
+            if (currentCol == 0) {
+                if (soNguyenTo == max) {
+                    System.out.println("Dong " + currentRow + " co nhieu so nguyen to nhat!");
+                }
+                soNguyenTo = 0;
+                temp_row++;
+            }
+        }
+
+        stopDuyetMang();
+    }
+
+    public static void LietKeDongNhieuSoHoanThienNhat() {
+        int max = 0;
+
+        startDuyetMang();
+
+        while (nextDuyetMang()) {
+            if (currentCol == 0) {
+                int count = 0;
+
+                // Dòng vừa duyệt xong là currentRow - 1
+                for (int temp = 0; temp < cols; temp++) {
+                    if (LaSoHoanThien(table[currentRow - 1][temp])) {
+                        count++;
+                    }
+                }
+
+                if (count > max) {
+                    max = count;
+                }
+            }
+        }
+
+        stopDuyetMang();
+
+        // Duyệt lại để in các dòng có số lượng lớn nhất
+        startDuyetMang();
+
+        while (nextDuyetMang()) {
+            if (currentCol == 0) {
+                int count = 0;
+
+                for (int temp = 0; temp < cols; temp++) {
+                    if (LaSoHoanThien(table[currentRow - 1][temp])) {
+                        count++;
+                    }
+                }
+
+                if (count == max) {
+                    System.out.println("Dong " + currentRow + " co nhieu so hoan thien nhat!");
+                }
+            }
+        }
+
+        stopDuyetMang();
+    }
+
     public static void main(String[] args) {
         TaoMang();
 //        table[3][5] = 234;
@@ -250,13 +590,24 @@ public class Array2 {
 //        table[0][0] = 11;
 //        System.out.println(SoDuongNhoNhat());
 //        System.out.println(SoNguyenToLonNhat());
-//        table[9][3] = 225;
-//        System.out.println(SoHoanThienNhoNhat());
-//        System.out.println(SoHoanThienNhoNhat());
+        table[9][3] = 6;
+        table[9][2] = 28;
+        System.out.println(SoHoanThienNhoNhat());
+//        System.out.println(SoHoanThienDauTien());
 //        System.out.println(SoChinhPhuongLonNhat());
 //        System.out.println(CotCoTongNhoNhat());
 //        table[3][4] = 999999999;
+//        table[9][2] = 2;
 //        System.out.println(DongCoTongLonNhat());
-//        XuatMang();
+//        LietKeCotSoChinhPhuong();
+//        LietKeDongCoSoNguyenTo();
+//        table[0][0] = -1;
+//        LietKeDongToanAm();
+//        LietKeDongGiamDan();
+//        LietKeDongCoTongLonNhat();
+//        LietKeDongNhieuSoChanNhat();
+//        LietKeDongCoNhieuSoNguyenToNhat();
+//        LietKeDongNhieuSoHoanThienNhat();
+        XuatMang();
     }
 }
