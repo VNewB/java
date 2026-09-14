@@ -81,7 +81,7 @@ public class Array2 {
     }
 
     public static int SoLonNhat() {
-        int result = 0;
+        int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
             if (gtemp > result) result = gtemp;
@@ -91,7 +91,7 @@ public class Array2 {
     }
 
     public static int SoChanDauTien() {
-        int result = 0;
+        int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
             if (gtemp > 0 && gtemp % 2 == 0) result = gtemp;
@@ -100,7 +100,7 @@ public class Array2 {
     }
 
     public static int SoDuongLonNhat() {
-        int result = 0;
+        int result = -1;
         if (SoLonNhat() > 0) {
             result = SoLonNhat();
         }
@@ -108,7 +108,7 @@ public class Array2 {
         return result;
     }
     public static int SoNguyenToDauTien() {
-        int result = 0;
+        int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
             if (gtemp < 2) {
@@ -127,7 +127,7 @@ public class Array2 {
     }
 
     public static int SoChanLonNhat() {
-        int result = 0;
+        int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
             if (gtemp % 2 == 0 && gtemp > result) result = gtemp;
@@ -145,7 +145,7 @@ public class Array2 {
     }
 
     public static int SoNguyenToLonNhat() {
-        int result = 0;
+        int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
             if (gtemp < 2) {
@@ -163,7 +163,7 @@ public class Array2 {
     }
 
     public static int SoHoanThienNhoNhat() {
-        int result = 0;
+        int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
             int sum = 0;
@@ -173,7 +173,7 @@ public class Array2 {
             }
 
             if (sum == gtemp) {
-                if (result == 0 || gtemp < result)
+                if (result == -1 || gtemp < result)
                     result = gtemp;
             }
         }
@@ -181,7 +181,7 @@ public class Array2 {
     }
 
     public static int SoChinhPhuongLonNhat() {
-        int result = 0;
+        int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
             int sqrt = (int) Math.sqrt(gtemp);
@@ -193,7 +193,7 @@ public class Array2 {
     }
 
     public static int SoHoanThienDauTien() {
-        int result = 0;
+        int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
             int sum = 0;
@@ -205,7 +205,39 @@ public class Array2 {
         return result;
     }
 
+    public static int CotCoTongNhoNhat() {
+        int result = -1;
+        int min = 0;
+        for (int temp_col = 0; temp_col < cols; temp_col++) {
+            int temp = 0;
+            for (int temp_row = 0; temp_row < rows; temp_row++) {
+                temp += table[temp_row][temp_col];
+            }
+            if (temp_col == 0 || temp < min) {
+                min = temp;
+                result = temp_col;
+            }
+        }
+        return result;
+    }
 
+    public static int DongCoTongLonNhat() {
+        int result = -1;
+        int temp_result = -1;
+        int temp = 0;
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            temp += gtemp;
+            if (currentCol == cols - 1) {
+                if (result == -1 || temp_result < temp) {
+                    temp_result = temp;
+                    result = currentRow;
+                }
+                temp = 0;
+            }
+        }
+        return result;
+    }
     public static void main(String[] args) {
         TaoMang();
 //        table[3][5] = 234;
@@ -222,6 +254,9 @@ public class Array2 {
 //        System.out.println(SoHoanThienNhoNhat());
 //        System.out.println(SoHoanThienNhoNhat());
 //        System.out.println(SoChinhPhuongLonNhat());
+//        System.out.println(CotCoTongNhoNhat());
+//        table[3][4] = 999999999;
+//        System.out.println(DongCoTongLonNhat());
 //        XuatMang();
     }
 }
