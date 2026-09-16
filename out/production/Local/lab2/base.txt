@@ -1,0 +1,77 @@
+    public static final int ROWS = 10;
+    public static final int COLS = 20;
+
+    static int currentRow = 0;
+    static int currentCol = 0;
+
+    public static int rows = 0;
+    public static int cols = 0;
+
+    static int[][] table;
+    static int gtemp;
+    static boolean running;
+    static boolean stopped;
+
+    static boolean nextDuyetMang() {
+        if (!running || stopped) {
+            return false;
+        }
+        if (currentRow >= rows) {
+            return false;
+        }
+
+        gtemp = table[currentRow][currentCol];
+        currentCol++;
+        if (currentCol >= cols) {
+            currentCol = 0;
+            currentRow++;
+        }
+        return true;
+    }
+
+    static void startDuyetMang() {
+        currentRow = 0;
+        currentCol = 0;
+        running = true;
+        stopped = false;
+    }
+
+    static void pauseDuyetMang() {
+        running = false;
+    }
+
+    static void continueDuyetMang() {
+        if (!stopped) {
+            running = true;
+        }
+    }
+
+    static void stopDuyetMang() {
+        running = false;
+        stopped = true;
+    }
+
+    public static void TaoMang(int irows, int icols) {
+        rows = irows;
+        cols = icols;
+        table = new int[rows][cols];
+        for (int temp_rows = 0; temp_rows < rows; temp_rows++) {
+            for (int temp_cols = 0; temp_cols < cols; temp_cols++) {
+                table[temp_rows][temp_cols] = (temp_rows * icols) - temp_cols * irows;
+            }
+        }
+    }
+
+    public static void TaoMang() {
+        TaoMang(ROWS, COLS);
+    }
+
+    public static void XuatMang () {
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            System.out.print(gtemp + " ");
+            if (currentCol == 0) System.out.println();
+        }
+        stopDuyetMang();
+        System.out.println();
+    }
