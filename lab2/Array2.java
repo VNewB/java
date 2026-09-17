@@ -1474,7 +1474,6 @@ public class Array2 {
 //        LietKeDongCoNhieuSoNguyenToNhat();
 //        LietKeDongNhieuSoHoanThienNhat();
         TaoNgauNhienMaTranVuong(11);
-//        InSoLeMTV();35 95 61 63 30 4 47 22 97 39 48 56 4 90 93 36 93 77 34 96 36 46 17 5 92 68 76 89 98 91 3 59 23 20 17 46 51 77 11 93 82 34 62 41 84 30 76 89 53 51 91 11 71 95 29 35 53 87 11 8 76 30 36 1 72 43
         In2DuongCheo();
 //        KhongIn2DuongCheo();
 //        System.out.println(TongDuongCheoChinh());
