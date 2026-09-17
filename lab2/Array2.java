@@ -1,3 +1,4 @@
+package lab2;
 import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.*;
 import java.util.Random;
@@ -13,7 +14,8 @@ public class Array2 {
     public static int cols = 0;
 
     static int[][] table;
-    static int gtemp;
+    static int gtemp_prev;
+    static int gtemp_now;
     static boolean running;
     static boolean stopped;
 
@@ -25,11 +27,15 @@ public class Array2 {
             return false;
         }
 
-        gtemp = table[currentRow][currentCol];
+        gtemp_prev = table[currentRow][currentCol];
         currentCol++;
         if (currentCol >= cols) {
             currentCol = 0;
             currentRow++;
+        }
+
+        if (currentRow < rows && currentCol < cols) {
+            gtemp_now = table[currentRow][currentCol];
         }
         return true;
     }
@@ -41,15 +47,15 @@ public class Array2 {
         stopped = false;
     }
 
-    static void pauseDuyetMang() {
-        running = false;
-    }
-
-    static void continueDuyetMang() {
-        if (!stopped) {
-            running = true;
-        }
-    }
+//    static void pauseDuyetMang() {
+//        running = false;
+//    }
+//
+//    static void continueDuyetMang() {
+//        if (!stopped) {
+//            running = true;
+//        }
+//    }
 
     static void stopDuyetMang() {
         running = false;
@@ -74,7 +80,7 @@ public class Array2 {
     public static void XuatMang () {
         startDuyetMang();
         while (nextDuyetMang()) {
-            System.out.print(gtemp + " ");
+            System.out.print(gtemp_prev + " ");
             if (currentCol == 0) System.out.println();
         }
         stopDuyetMang();
@@ -123,7 +129,7 @@ public class Array2 {
         int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp > result) result = gtemp;
+            if (gtemp_prev > result) result = gtemp_prev;
         }
         stopDuyetMang();
         return result;
@@ -133,7 +139,7 @@ public class Array2 {
         int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp > 0 && gtemp % 2 == 0) result = gtemp;
+            if (gtemp_prev > 0 && gtemp_prev % 2 == 0) result = gtemp_prev;
         }
         stopDuyetMang();
         return result;
@@ -152,8 +158,8 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (LaSoNguyenTo(gtemp)) {
-                return gtemp;
+            if (LaSoNguyenTo(gtemp_prev)) {
+                return gtemp_prev;
             }
         }
         stopDuyetMang();
@@ -164,7 +170,7 @@ public class Array2 {
         int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp % 2 == 0 && gtemp > result) result = gtemp;
+            if (gtemp_prev % 2 == 0 && gtemp_prev > result) result = gtemp_prev;
         }
         stopDuyetMang();
         return result;
@@ -174,7 +180,7 @@ public class Array2 {
         int result = table[0][0];
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp > 0 && gtemp < result) result = gtemp;
+            if (gtemp_prev > 0 && gtemp_prev < result) result = gtemp_prev;
         }
         stopDuyetMang();
         return result;
@@ -185,9 +191,9 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (LaSoNguyenTo(gtemp)) {
-                if (gtemp > result) {
-                    result = gtemp;
+            if (LaSoNguyenTo(gtemp_prev)) {
+                if (gtemp_prev > result) {
+                    result = gtemp_prev;
                 }
             }
         }
@@ -199,7 +205,7 @@ public class Array2 {
         startDuyetMang();
         while (nextDuyetMang()) {
             int temp = 0;
-            if (LaSoHoanThien(gtemp)) temp = gtemp;
+            if (LaSoHoanThien(gtemp_prev)) temp = gtemp_prev;
             if (result > temp) {
                 result = temp;
             }
@@ -212,8 +218,8 @@ public class Array2 {
         int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (LaSoChinhPhuong(gtemp)) {
-                if (result < gtemp) result = gtemp;
+            if (LaSoChinhPhuong(gtemp_prev)) {
+                if (result < gtemp_prev) result = gtemp_prev;
             }
         }
         stopDuyetMang();
@@ -224,7 +230,7 @@ public class Array2 {
         int result = -1;
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (LaSoHoanThien(gtemp)) result = gtemp;
+            if (LaSoHoanThien(gtemp_prev)) result = gtemp_prev;
         }
         stopDuyetMang();
         return result;
@@ -253,7 +259,7 @@ public class Array2 {
         int temp = 0;
         startDuyetMang();
         while (nextDuyetMang()) {
-            temp += gtemp;
+            temp += gtemp_prev;
             if (currentCol == cols - 1) {
                 if (result == -1 || temp_result < temp) {
                     temp_result = temp;
@@ -270,7 +276,7 @@ public class Array2 {
         startDuyetMang();
         boolean below_zero = false;
         while (nextDuyetMang()) {
-            if (gtemp < 0) {
+            if (gtemp_prev < 0) {
                 below_zero = true;
             }
 
@@ -289,7 +295,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (LaSoNguyenTo(gtemp)) {
+            if (LaSoNguyenTo(gtemp_prev)) {
                 Prime = true;
             }
             // currentCol == 0 nghĩa là vừa duyệt xong một dòng
@@ -307,7 +313,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp % 2 == 0) {
+            if (gtemp_prev % 2 == 0) {
                 isEven = true;
             }
 
@@ -328,7 +334,7 @@ public class Array2 {
         while (nextDuyetMang()) {
             int temp_col = (currentCol == 0) ? cols - 1 : currentCol - 1;
 
-            if (LaSoChinhPhuong(gtemp)) {
+            if (LaSoChinhPhuong(gtemp_prev)) {
                 isSquare[temp_col] = true;
             }
         }
@@ -347,7 +353,7 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (gtemp >= 0) {
+            if (gtemp_prev >= 0) {
                 all_Below0 = false;
             }
 
@@ -367,7 +373,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp % 2 != 0) {
+            if (gtemp_prev % 2 != 0) {
                 allEven = false;
             }
 
@@ -389,13 +395,13 @@ public class Array2 {
         int prev = 0;
         while (nextDuyetMang()) {
             if (currentCol == 1) {
-                prev = gtemp;
+                prev = gtemp_prev;
             }
             else {
-                if (gtemp > prev) {
+                if (gtemp_prev > prev) {
                     decrease = false;
                 }
-                prev = gtemp;
+                prev = gtemp_prev;
             }
 
             if (currentCol == 0) {
@@ -418,14 +424,14 @@ public class Array2 {
         startDuyetMang();
         while (nextDuyetMang()) {
             if (currentRow == dongMax) {
-                max += gtemp;
+                max += gtemp_prev;
             }
         }
 
         // Liệt kê các dòng có tổng bằng max
         startDuyetMang();
         while (nextDuyetMang()) {
-            temp += gtemp;
+            temp += gtemp_prev;
 
             if (currentCol == cols - 1) {
                 if (temp == max) {
@@ -468,7 +474,7 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (gtemp % 2 == 0) {
+            if (gtemp_prev % 2 == 0) {
                 count++;
             }
 
@@ -486,7 +492,7 @@ public class Array2 {
         count = 0;
 
         while (nextDuyetMang()) {
-            if (gtemp % 2 == 0) {
+            if (gtemp_prev % 2 == 0) {
                 count++;
             }
 
@@ -508,7 +514,7 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (LaSoNguyenTo(gtemp)) {
+            if (LaSoNguyenTo(gtemp_prev)) {
                 soNguyenTo++;
             }
 
@@ -526,7 +532,7 @@ public class Array2 {
         int temp_row = 0;
 
         while (nextDuyetMang()) {
-            if (LaSoNguyenTo(gtemp)) {
+            if (LaSoNguyenTo(gtemp_prev)) {
                 soNguyenTo++;
             }
 
@@ -593,7 +599,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp > 0) {
+            if (gtemp_prev > 0) {
                 result++;
             }
         }
@@ -607,7 +613,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp < 0) {
+            if (gtemp_prev < 0) {
                 result++;
             }
         }
@@ -621,7 +627,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp > 0 && gtemp % 2 == 0) {
+            if (gtemp_prev > 0 && gtemp_prev % 2 == 0) {
                 result++;
             }
         }
@@ -637,7 +643,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp < 0 && gtemp % 2 != 0) {
+            if (gtemp_prev < 0 && gtemp_prev % 2 != 0) {
                 result++;
             }
         }
@@ -653,11 +659,11 @@ public class Array2 {
 
         // Lấy phần tử đầu tiên làm giá trị nhỏ nhất ban đầu
         nextDuyetMang();
-        int result = gtemp;
+        int result = gtemp_prev;
 
         while (nextDuyetMang()) {
-            if (gtemp < result) {
-                result = gtemp;
+            if (gtemp_prev < result) {
+                result = gtemp_prev;
             }
         }
 
@@ -669,7 +675,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp == x) {
+            if (gtemp_prev == x) {
                 result++;
             }
         }
@@ -682,7 +688,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp < x) {
+            if (gtemp_prev < x) {
                 result++;
             }
         }
@@ -695,7 +701,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (LaSoNguyenTo(gtemp)) {
+            if (LaSoNguyenTo(gtemp_prev)) {
                 result++;
             }
         }
@@ -708,7 +714,7 @@ public class Array2 {
 
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp < x && LaSoNguyenTo(gtemp)) {
+            if (gtemp_prev < x && LaSoNguyenTo(gtemp_prev)) {
                 result++;
             }
         }
@@ -722,7 +728,7 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (gtemp < 0) {
+            if (gtemp_prev < 0) {
                 result++;
             }
 
@@ -774,8 +780,8 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (gtemp > max) {
-                max = gtemp;
+            if (gtemp_prev > max) {
+                max = gtemp_prev;
             }
         }
 
@@ -784,7 +790,7 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (gtemp == max) {
+            if (gtemp_prev == max) {
                 result++;
             }
         }
@@ -800,8 +806,8 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (gtemp < min) {
-                min = gtemp;
+            if (gtemp_prev < min) {
+                min = gtemp_prev;
             }
         }
 
@@ -810,7 +816,7 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (gtemp == min) {
+            if (gtemp_prev == min) {
                 result++;
             }
         }
@@ -826,9 +832,9 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (gtemp % 2 == 0) {
-                if (!coSoChan || gtemp < min) {
-                    min = gtemp;
+            if (gtemp_prev % 2 == 0) {
+                if (!coSoChan || gtemp_prev < min) {
+                    min = gtemp_prev;
                     coSoChan = true;
                 }
             }
@@ -845,7 +851,7 @@ public class Array2 {
         startDuyetMang();
 
         while (nextDuyetMang()) {
-            if (gtemp == min) {
+            if (gtemp_prev == min) {
                 result++;
             }
         }
@@ -911,20 +917,21 @@ public class Array2 {
     public static void InSoLeMTV() {
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (gtemp % 2 == 0) System.out.print("X ");
-            else System.out.print(gtemp + " ");
+            if (gtemp_prev % 2 == 0) System.out.print("X ");
+            else System.out.print(gtemp_prev + " ");
             if (currentCol == 0) System.out.println();
         }
         stopDuyetMang();
         System.out.println();
     }
+    // Update gtemp_now and gtemp_prev
     public static void In2DuongCheo() {
         startDuyetMang();
         while (nextDuyetMang()) {
-            if (currentCol == currentRow + 1) System.out.print(gtemp + " ");
-            if (currentRow == 0 && currentCol == cols - 1) System.out.print(" " + table[currentRow][cols - 1] + " ");
-            if (currentCol == cols - currentRow) System.out.print(gtemp + " ");
-            else System.out.print(" ");
+            if (currentCol == currentRow + 1) System.out.print(gtemp_prev + " ");
+            else if (currentRow == 0 && currentCol == cols - 1) System.out.print("  " + table[currentRow][cols - 1] + " ");
+            else if (currentCol == cols - currentRow) System.out.print(gtemp_prev + " ");
+            else System.out.print("   ");
             if (currentCol == 0) System.out.println();
         }
         stopDuyetMang();
@@ -935,12 +942,12 @@ public class Array2 {
         while (nextDuyetMang()) {
             if (currentCol == currentRow + 1) System.out.print("  ");
             else if (currentRow == 0 && currentCol == cols - 1) {
-                System.out.print(gtemp + " ");
+                System.out.print(gtemp_prev + " ");
                 currentRow++;
                 currentCol = 0;
             }
             else if (currentCol == cols - currentRow) System.out.print("  ");
-            else System.out.print(gtemp + " ");
+            else System.out.print(gtemp_prev + " ");
             if (currentCol == 0) System.out.println();
         }
         stopDuyetMang();
@@ -951,8 +958,8 @@ public class Array2 {
         startDuyetMang();
         while (nextDuyetMang()) {
             if (currentCol == currentRow + 1) {
-                System.out.print(gtemp + " ");
-                result += gtemp;
+                System.out.print(gtemp_prev + " ");
+                result += gtemp_prev;
             }
             if (currentRow == rows - 1 && currentCol == cols - 1) {
                 System.out.print(table[currentRow][currentCol] + " ");
@@ -970,9 +977,9 @@ public class Array2 {
         startDuyetMang();
         while (nextDuyetMang()) {
             if (currentCol == currentRow + 1) {
-                if (gtemp % 2 != 0) {
-                    System.out.print(gtemp + " ");
-                    result += gtemp;
+                if (gtemp_prev % 2 != 0) {
+                    System.out.print(gtemp_prev + " ");
+                    result += gtemp_prev;
                 }
             }
             if (currentRow == rows - 1 && currentCol == cols - 1) {
@@ -988,6 +995,454 @@ public class Array2 {
         System.out.println();
         return result;
     }
+    public static int TongDuongCheoPhu() {
+        int result = 0;
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (currentCol == cols - currentRow && currentRow != rows) {
+                System.out.print(gtemp_prev + " ");
+                result += gtemp_prev;
+            }
+            if (currentRow == 0 && currentCol == cols - 1) {
+                System.out.print(table[currentRow][currentCol] + " ");
+                result += table[currentRow][currentCol];
+            }
+            else System.out.print(" ");
+            if (currentCol == 0) System.out.println();
+        }
+        stopDuyetMang();
+        System.out.println();
+        return result;
+    }
+    public static int TongSoNguyenToDuongCheoPhu() {
+        int result = 0;
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (currentCol == cols - currentRow && currentRow != rows) {
+                if (LaSoNguyenTo(gtemp_prev)) {
+                    System.out.print(gtemp_prev + " ");
+                    result += gtemp_prev;
+                }
+            }
+            if (currentRow == 0 && currentCol == cols - 1) {
+                if (LaSoNguyenTo(table[currentRow][currentCol])) {
+                    System.out.print(table[currentRow][currentCol] + " ");
+                    result += table[currentRow][currentCol];
+                }
+            }
+            else System.out.print(" ");
+            if (currentCol == 0) System.out.println();
+        }
+        stopDuyetMang();
+        System.out.println();
+        return result;
+    }
+    // Debug dong ho cat
+//    public static int TinhDongHoCat() {
+//        int result = 0;
+//
+//        startDuyetMang();
+//        while (nextDuyetMang()) {
+//
+//            if (currentCol > currentRow && currentCol < cols + 1 - currentRow) {
+//                System.out.print(gtemp_prev + " ");
+//                result += gtemp_prev;
+//                if (currentRow == 0 && currentCol == cols - 1) {
+//                    System.out.print(table[currentRow][currentCol] + " ");
+//                    result += table[currentRow][currentCol];
+//                }
+//            }
+//
+//            else if (currentCol <= currentRow + 1 && currentCol >= cols - currentRow) {
+//                System.out.print(gtemp_prev + " ");
+//                result += gtemp_prev;
+//            }
+//            else {
+//                System.out.print(" ");
+//            }
+//
+//            if (currentCol == 0)
+//                System.out.println();
+//        }
+//
+//        stopDuyetMang();
+//        System.out.println(result);
+//
+//        return result;
+//    }
+    // Debug DuongCheoChinh
+//    public static int TinhTongTamGiacTrenDuongCheoChinh() {
+//        int result = 0;
+//
+//        startDuyetMang();
+//        System.out.print(table[0][0] + " ");
+//        result += table[0][0];
+//        while (nextDuyetMang()) {
+//            if (currentCol >= currentRow) {
+//                System.out.print(gtemp_now + " ");
+//                result += gtemp_now;
+//            }
+//
+//            else {
+//                System.out.print("   ");
+//            }
+//
+//            if (currentCol == 0)
+//                System.out.println();
+//        }
+//
+//        stopDuyetMang();
+//        System.out.println(result);
+//
+//        return result;
+//    }
+    public static int TinhTongTamGiacTrenDuongCheoChinh() {
+        int result = 0;
+
+        startDuyetMang();
+        result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol >= currentRow) {
+                result += gtemp_now;
+            }
+            if (currentCol == 0) System.out.println();
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+        public static int TinhTongTamGiacDuoiDuongCheoChinh() {
+        int result = 0;
+
+        startDuyetMang();
+        result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol == 1 && currentRow < rows) {
+                result += gtemp_now;
+            }
+            else if (currentCol <= currentRow && currentRow < rows) {
+                result += gtemp_now;
+            }
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongTamGiacDuoiDuongCheoPhu() {
+        int result = 0;
+
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (currentCol == cols && currentRow < rows) {
+                result += gtemp_now;
+            }
+            else if (currentCol >= cols - 1 - currentRow && currentRow < rows) {
+                result += gtemp_now;
+            }
+        }
+
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongTamGiacTrenDuongCheoPhu() {
+        int result = 0;
+
+        startDuyetMang();
+        result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol == 0 && currentRow < rows) {
+                result += gtemp_now;
+            }
+            else if (currentCol < cols - currentRow && currentRow < rows) {
+                result += gtemp_now;
+            }
+        }
+
+
+        stopDuyetMang();
+        return result;
+    }
+
+    public static int TinhTongSoLeTamGiacTrenDuongCheoChinh() {
+        int result = 0;
+
+        startDuyetMang();
+        if (table[0][0] % 2 != 0) result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol >= currentRow) {
+                if (gtemp_now % 2 != 0) result += gtemp_now;
+            }
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoLeTamGiacDuoiDuongCheoChinh() {
+        int result = 0;
+
+        startDuyetMang();
+        if (table[0][0] % 2 != 0) result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol == 1 && currentRow < rows) {
+                if (gtemp_now % 2 != 0) result += gtemp_now;
+            }
+            else if (currentCol <= currentRow && currentRow < rows) {
+                if (gtemp_now % 2 != 0) result += gtemp_now;
+            }
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoLeTamGiacDuoiDuongCheoPhu() {
+        int result = 0;
+
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (currentCol == cols && currentRow < rows) {
+                if (gtemp_now % 2 != 0) result += gtemp_now;
+            }
+            else if (currentCol >= cols - 1 - currentRow && currentRow < rows) {
+                if (gtemp_now % 2 != 0) result += gtemp_now;
+            }
+        }
+
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoLeTamGiacTrenDuongCheoPhu() {
+        int result = 0;
+
+        startDuyetMang();
+        if (table[0][0] % 2 != 0) result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol == 0 && currentRow < rows) {
+                if (gtemp_now % 2 != 0) result += gtemp_now;
+            }
+            else if (currentCol < cols - currentRow && currentRow < rows) {
+                if (gtemp_now % 2 != 0) result += gtemp_now;
+            }
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoDuongTamGiacTrenDuongCheoChinh() {
+        int result = 0;
+
+        startDuyetMang();
+        if (table[0][0] >= 0) result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol >= currentRow) {
+                if (gtemp_now >= 0) result += gtemp_now;
+            }
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoDuongTamGiacDuoiDuongCheoChinh() {
+        int result = 0;
+
+        startDuyetMang();
+        if (table[0][0] >= 0) result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol == 1 && currentRow < rows) {
+                if (gtemp_now >= 0) result += gtemp_now;
+            }
+            else if (currentCol <= currentRow && currentRow < rows) {
+                if (gtemp_now >= 0) result += gtemp_now;
+            }
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoDuongTamGiacDuoiDuongCheoPhu() {
+        int result = 0;
+
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (currentCol == cols && currentRow < rows) {
+                if (gtemp_now >= 0) result += gtemp_now;
+            }
+            else if (currentCol >= cols - 1 - currentRow && currentRow < rows) {
+                if (gtemp_now >= 0) result += gtemp_now;
+            }
+        }
+
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoDuongTamGiacTrenDuongCheoPhu() {
+        int result = 0;
+
+        startDuyetMang();
+        if (table[0][0] >= 0) result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol == 0 && currentRow < rows) {
+                if (gtemp_now >= 0) result += gtemp_now;
+            }
+            else if (currentCol < cols - currentRow && currentRow < rows) {
+                if (gtemp_now >= 0) result += gtemp_now;
+            }
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTrungBinhCongTamGiacTrenDuongCheoChinh() {
+        int result = 0;
+        int count = 0;
+
+        startDuyetMang();
+        result += table[0][0];
+        count++;
+
+        while (nextDuyetMang()) {
+            if (currentCol >= currentRow) {
+                result += gtemp_now;
+                count++;
+            }
+        }
+
+        stopDuyetMang();
+        return result / count;
+    }
+    public static int TinhTrungBinhCongTamGiacDuoiDuongCheoChinh() {
+        int result = 0;
+        int count = 0;
+
+        startDuyetMang();
+        result += table[0][0];
+        count++;
+
+        while (nextDuyetMang()) {
+            if (currentCol == 1 && currentRow < rows) {
+                result += gtemp_now;
+                count++;
+            }
+            else if (currentCol <= currentRow && currentRow < rows) {
+                result += gtemp_now;
+                count++;
+            }
+        }
+
+        stopDuyetMang();
+        return result / count;
+    }
+    public static int TinhTrungBinhCongTamGiacDuoiDuongCheoPhu() {
+        int result = 0;
+        int count = 0;
+
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (currentCol == cols && currentRow < rows) {
+                result += gtemp_now;
+                count++;
+            }
+            else if (currentCol >= cols - 1 - currentRow && currentRow < rows) {
+                result += gtemp_now;
+                count++;
+            }
+        }
+
+
+        stopDuyetMang();
+        return result / count;
+    }
+    public static int TinhTrungBinhCongTamGiacTrenDuongCheoPhu() {
+        int result = 0;
+        int count = 0;
+
+        startDuyetMang();
+        result += table[0][0];
+        count++;
+        while (nextDuyetMang()) {
+            if (currentCol == 0 && currentRow < rows) {
+                result += gtemp_now;
+                count++;
+            }
+            else if (currentCol < cols - currentRow && currentRow < rows) {
+                result += gtemp_now;
+                count++;
+            }
+        }
+
+        stopDuyetMang();
+        return result / count;
+    }
+
+    public static int TinhTongSoHoanThienTamGiacTrenDuongCheoChinh() {
+        int result = 0;
+
+        startDuyetMang();
+        if (LaSoHoanThien(table[0][0])) result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol >= currentRow) {
+                if (LaSoHoanThien(gtemp_now)) result += gtemp_now;
+            }
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoHoanThienTamGiacDuoiDuongCheoChinh() {
+        int result = 0;
+
+        startDuyetMang();
+        if (LaSoHoanThien(table[0][0])) result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol == 1 && currentRow < rows) {
+                if (LaSoHoanThien(gtemp_now)) result += gtemp_now;
+            }
+            else if (currentCol <= currentRow && currentRow < rows) {
+                if (LaSoHoanThien(gtemp_now)) result += gtemp_now;
+            }
+        }
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoHoanThienTamGiacDuoiDuongCheoPhu() {
+        int result = 0;
+
+        startDuyetMang();
+        while (nextDuyetMang()) {
+            if (currentCol == cols && currentRow < rows) {
+                if (LaSoHoanThien(gtemp_now)) result += gtemp_now;
+            }
+            else if (currentCol >= cols - 1 - currentRow && currentRow < rows) {
+                if (LaSoHoanThien(gtemp_now)) result += gtemp_now;
+            }
+        }
+
+
+        stopDuyetMang();
+        return result;
+    }
+    public static int TinhTongSoHoanThienTamGiacTrenDuongCheoPhu() {
+        int result = 0;
+
+        startDuyetMang();
+        if (LaSoHoanThien(table[0][0])) result += table[0][0];
+        while (nextDuyetMang()) {
+            if (currentCol == 0 && currentRow < rows) {
+                if (LaSoHoanThien(gtemp_now)) result += gtemp_now;
+            }
+            else if (currentCol < cols - currentRow && currentRow < rows) {
+                if (LaSoHoanThien(gtemp_now)) result += gtemp_now;
+            }
+        }
+
+
+        stopDuyetMang();
+        return result;
+    }
+
     public static void main(String[] args) {
 //        TaoMang();
 //        table[3][5] = 234;
@@ -1018,12 +1473,21 @@ public class Array2 {
 //        LietKeDongNhieuSoChanNhat();
 //        LietKeDongCoNhieuSoNguyenToNhat();
 //        LietKeDongNhieuSoHoanThienNhat();
-        TaoNgauNhienMaTranVuong(10);
-//        InSoLeMTV();
-//        In2DuongCheo();
+        TaoNgauNhienMaTranVuong(11);
+//        InSoLeMTV();35 95 61 63 30 4 47 22 97 39 48 56 4 90 93 36 93 77 34 96 36 46 17 5 92 68 76 89 98 91 3 59 23 20 17 46 51 77 11 93 82 34 62 41 84 30 76 89 53 51 91 11 71 95 29 35 53 87 11 8 76 30 36 1 72 43
+        In2DuongCheo();
 //        KhongIn2DuongCheo();
 //        System.out.println(TongDuongCheoChinh());
 //        System.out.println(TongCacSoLeDuongCheoChinh());
+//        System.out.println(TongDuongCheoPhu());
+//        System.out.println(TongSoNguyenToDuongCheoPhu());
+//        TinhDongHoCat();
+//        System.out.println(TinhTongTamGiacDuoiDuongCheoChinh());
+//        System.out.print(TinhTongTamGiacDuoiDuongCheoPhu());
+//        System.out.print(TinhTongTamGiacTrenDuongCheoPhu());
+//        System.out.println(TinhTrungBinhCongTamGiacTrenDuongCheoChinh());
+        System.out.println();
+
         XuatMang();
     }
 }
