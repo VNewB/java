@@ -7,6 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// $$$$$$$  Chạy file này  $$$$$$$$
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
 public class MayTinhLapRap extends JFrame {
     // Khai báo danh sách các Label quan trọng ở phạm vi class
     java.util.List<JLabel> danhSachLabelQuanTrong = new java.util.ArrayList<>();
@@ -97,19 +101,9 @@ public class MayTinhLapRap extends JFrame {
             hienThiMayTinhAt(vitriHienTai);
         }
         capNhatThongKeVaTrangThai();
-//        capNhatTrang();
         // Đăng ký sự kiện lắng nghe thay đổi ô nhập để tự bật/tắt nút Nhập máy
         ganSuKienKiemTraInput();
 
-        btnNhapMay.setEnabled(false);
-        btnVeDau.setEnabled(false);
-        btnVeTruoc.setEnabled(false);
-        btnVeSau.setEnabled(false);
-        btnVeCuoi.setEnabled(false);
-        btnXoa.setEnabled(false);
-
-        btnNhapMoi.setEnabled(true);
-        btnThoat.setEnabled(true);
 
         setVisible(true);
 
@@ -365,19 +359,6 @@ public class MayTinhLapRap extends JFrame {
         dieuHuong.add(btnVeSau);
         dieuHuong.add(btnVeCuoi);
 
-//        JPanel mauSac = new JPanel(new GridBagLayout());
-//        mauSac.setBorder(BorderFactory.createTitledBorder("Màu sắc"));
-//        rbDo = new JRadioButton("Đỏ", true);
-//        rbXanh = new JRadioButton("Xanh");
-//        rbTim = new JRadioButton("Tím");
-//        ButtonGroup groupMau = new ButtonGroup();
-//        groupMau.add(rbDo); groupMau.add(rbXanh); groupMau.add(rbTim);
-//        GridBagConstraints mauSacBag = new GridBagConstraints();
-//        mauSacBag.anchor = GridBagConstraints.WEST;
-//        mauSacBag.gridy = 0; mauSac.add(rbDo, mauSacBag);
-//        mauSacBag.gridy = 1; mauSac.add(rbXanh, mauSacBag);
-//        mauSacBag.gridy = 2; mauSac.add(rbTim, mauSacBag);
-
         JPanel mauSac = new JPanel(new GridBagLayout());
         mauSac.setBorder(BorderFactory.createTitledBorder("Màu sắc"));
 
@@ -441,7 +422,6 @@ public class MayTinhLapRap extends JFrame {
             cbDVD.setSelected(false);
             cbLoa.setSelected(false);
 
-            btnNhapMay.setEnabled(true); // Cho phép bấm Nhập máy
             txtMaMay.requestFocusInWindow();
         });
 
@@ -601,15 +581,6 @@ public class MayTinhLapRap extends JFrame {
         });
 
         return main;
-    }
-
-    void capNhatTrang() {
-        int tongSo = dsmt.getSoLuong();
-        if (tongSo == 0) {
-            txtTrang.setText("0/0");
-        } else {
-            txtTrang.setText(tongSo + "/" + tongSo);
-        }
     }
 
     void them(JPanel panel, JLabel label, JTextField textField, int row) {
