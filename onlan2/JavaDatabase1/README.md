@@ -11,3 +11,8 @@ Changed database context to 'QLHangHoa'.
 (3 rows affected)
  
 (2 rows affected)
+
+
+Compile và chạy:
+$ mvn compile
+$ mvn exec:java
