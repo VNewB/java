@@ -1,5 +1,4 @@
 package lab2;
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.*;
 import java.util.Random;
 
