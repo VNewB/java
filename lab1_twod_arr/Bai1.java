@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.Scanner;
-public class Bai1 {
+class Bai1 {
     public static final int ROWS = 5;
     public static final int COLS = 200;
     public static int rows;
@@ -46,5 +46,10 @@ public class Bai1 {
         NhapSoDong();
         NhapSoCot();
         Mang2Chieu();
+    }
+}
+public class Buoi1 {
+    public static void main(String[] args) {
+        Bai1.main(args);
     }
 }
