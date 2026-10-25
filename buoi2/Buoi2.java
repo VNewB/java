@@ -15,8 +15,14 @@ public class Buoi2 {
 //        Bai9.main(args);
     }
 }
-
+//    Bài 1. Từ bài phân số trong phần 3.1.3, yêu cầu bổ sung như sau:
+//    a. Tạo một mảng các phân số: void NhapMangPS(PHANSO A[], int n). Hàm này sẽ gọi hàm nhập 1 phân số (Nhap1PS) đã có.
+//    b. Xuất mảng phân số: void XuatMangPS(PHANSO A[], int n). Hàm này sẽ gọi hàm xuất 1 phân số đã có.
+//    c. Tìm phân số lớn nhất, phân số nhỏ nhất. PHANSO TimPSMax(PHANSO A[], int n)
+//    d. Sắp xếp mảng phân số tăng dần: void SortMangPS(PHANSO A[], int n)
+//    e. Cho biết tổng, hiệu, tích, thương của 2 phân số lớn nhất và phân số nhỏ nhất đang có trong mảng.
 // Bài 1 do không rõ phần bài 3.1.3 nên em giả định phần phân số như thế này
+
 class Bai1 {
     static class PHANSO {
         int tu, mau;
@@ -230,7 +236,24 @@ class Bai1 {
         XuatMangPS(A, n);
     }
 }
-
+//    Bài 2. Tổ chức dữ liệu quản lý danh mục các bộ phim. Các thông tin liên quan đến mỗi bộ phim gồm:
+//            • Tên phim (kiểu chuỗi, tối đa 50 ký tự).
+//            • Doanh thu (kiểu số thực).
+//            • Thể loại (kiểu số nguyên). Quy ước: 0-hình sự, 1-tình cảm, 2-hài.
+//            • Năm sản xuất (kiểu số nguyên).
+//            • Phim Việt Nam sản xuất (kiểu bool). Quy ước: true-Việt Nam; false-nước ngoài.
+//    Viết chương trình gồm các hàm chức năng để thực hiện những công việc sau:
+//    a. Hàm nhập vào 1 bộ phim mới cùng với các thông tin liên quan đến bộ phim này.
+//    b. Hàm nhập danh sách n phim, với n do người dùng nhập trực tiếp trong hàm.
+//    c. Hàm xuất thông tin về 1 bộ phim.
+//    d. Hàm xuất danh sách n phim đang có trong danh sách.
+//    e. Hàm cho nhập một thể loại: In ra danh sách các bộ phim thuộc thể loại này.
+//    f. Hàm tính tổng doanh thu của các phim do Việt Nam sản xuất.
+//    g. Hàm nhận 2 tham số nguyên là fromYear (từ năm) và toYear(đến năm). Hàm
+//    thực hiện tính doanh thu trung bình của tất cả các phim năm sản xuất nằm trong khoảng từ fromYear đến toYear.
+//    h. Hàm nhận 2 tham số nguyên là LowerBound (cận dưới của doanh thu) và
+//    UpperBound (cận trên của doanh thu). Hàm thực hiện đếm số lượng phim có
+//    doanh thu thấp hơn LowerBound hoặc lớn hơn UpperBound.
 class Bai2 {
 
     static Scanner sc = new Scanner(System.in);
@@ -277,6 +300,11 @@ class Bai2 {
 
         System.out.print("Nhap nam san xuat: ");
         int nam = sc.nextInt();
+
+        while (nam > 3000 || nam < 1900) {
+            System.out.print("Nam san xuat khong hop le. \nNhap lai nam san xuat: ");
+            nam = sc.nextInt();
+        }
 
         System.out.print("Phim Viet Nam? (true/false): ");
         boolean vietNam = sc.nextBoolean();
@@ -442,6 +470,35 @@ class Bai2 {
                 + h(lower, upper));
     }
 }
+//    Bài 3. Tổ chức dữ liệu quản lý danh mục các máy tính của một cửa hàng. Các thông
+//    tin liên quan đến mỗi máy tính gồm:
+//        - Model (kiểu chuỗi, tối đa 10 ký tự).
+//        - Hãng sản xuất (kiểu chuỗi, tối đa 30 ký tự).
+//        - Thời gian bảo hành (kiểu số nguyên). Quy ước: 1: 3 tháng; 2: 6 tháng; 3: 12
+//        tháng; 4: 24 tháng; 5: 36 tháng.
+//        - Giá tiền (kiểu float)
+//        - Sản xuất tại Việt Nam (kiểu bool). Quy ước: true-Việt Nam; false-nước ngoài.
+//    Viết chương trình gồm các hàm chức năng để thực hiện những công việc sau:
+//    a. Hàm nhập vào 1 máy tính mới cùng với các thông tin liên quan đến máy tính
+//    này. Cần kiểm tra giá trị nhập, nếu nhập sai, chương trình phải yêu cầu nhập lại
+//    cho đến khi nhập đúng. Các thông tin cần kiểm tra gồm:
+//             Thời gian bảo hành phải nằm trong khoảng từ 1 đến 5.
+//             Sản xuất tại Việt Nam: cho người dùng nhập Y hoặc y là sản xuất tại Việt
+//            Nam; nhập N hoặc n là sản xuất tại nước ngoài. Các ký tự được nhập phải
+//            là 1 trong các ký tự Y, y, N, n.
+//    b. Hàm nhập danh sách n máy tính, với n do người dùng nhập trực tiếp trong hàm.
+//    c. Hàm xuất thông tin về 1 máy tính. Yêu cầu:
+//             Thời gian bảo hành phải thể hiện rõ số tháng bảo hành.
+//             Sản xuất tại Việt Nam: phải ghi rõ “Sản xuất tại Việt Nam” hoặc “Sản xuất
+//    tại nước ngoài”.
+//    d. Hàm xuất các máy tính đang có trong danh sách.
+//    e. Hàm cho nhập hãng sản xuất: In ra danh sách các máy tính do hãng này sản xuất.
+//    f. Hàm nhận 2 tham số nguyên là fromPrice (từ giá) và toPrice (đến giá). Hàm
+//    thực hiện đếm số lượng model máy tính có giá tiền nằm trong khoảng từ
+//    fromYear đến toYear.
+//    g. Hàm nhận 2 tham số nguyên là lowerPrice (giá thấp nhất) và upperPrice (giá
+//    cao nhất). Hàm thực hiện in ra danh sách các máy tính do Việt Nam sản xuất
+//    và có giá tiền thấp hơn lowerPrice hoặc cao hơn upperPrice.
 
 class Bai3 {
     static Scanner sc = new Scanner(System.in);
@@ -625,7 +682,16 @@ class Bai3 {
         cauG(lowerPrice, upperPrice);
     }
 }
-
+//    Bài 4. Để lắp ráp một máy vi tính hoàn chỉnh cần phải có tối thiểu 10 linh kiện loại A
+//    và có thể lắp bổ sung thêm vào khoảng tối đa 8 linh kiện loại B. Tại một cửa hàng
+//    vi tính cần quản lý bán hàng các loại linh kiện tại cửa hàng. Thông tin về một loại
+//    linh kiện gồm có: Tên linh kiện, quy cách, loại, đơn giá loại 1 (chất lượng tốt –
+//    số nguyên), đơn giá loại 2 (chất lượng thường – số nguyên). Viết chương trình
+//    thực hiện những công việc sau:
+//        - Nhập vào thông tin về các linh kiện có ở cửa hàng.
+//        - Xuất danh sách các linh kiện đã nhập theo thứ tự tăng dần của loại linh kiện và
+//        tên linh kiện.
+//        - Cho biết đã có đủ 10 linh kiện loại A cần thiết lắp ráp máy hay chưa?
 class Bai4 {
     static Scanner sc = new Scanner(System.in);
 
@@ -733,7 +799,13 @@ class Bai4 {
         }
     }
 }
-
+//    Bài 5. Một thư viện cần quản lý thông tin về các đầu sách. Mỗi đầu sách bao gồm các
+//    thông tin sau: MaSach (mã số sách), TenSach (tên sách), TacGia (tác giả), SL (số
+//    lượng các cuốn sách của đầu sách). Viết chương trình thực hiện các chức năng sau:
+//        - Nhập vào một danh sách các đầu sách (tối đa là 100 đầu sách)
+//        - Nhập vào tên của quyển sách. In ra thông tin đầy đủ về các sách có tên đó, nếu
+//        không có thì tên của quyển sách đó thì báo là: “Không tìm thấy”.
+//        - Tính tổng số sách có trong thư viện.
 class Bai5 {
     private static class Sach {
         String MaSach;
@@ -828,7 +900,15 @@ class Bai5 {
     }
 }
 
-
+//    Bài 6. Một cửa hàng cần quản lý các mặt hàng, thông tin một mặt hàng bao gồm:
+//        - Mã hàng - Số lượng - Số lượng tồn
+//        - Tên mặt hàng - Đơn giá - Thời gian bảo hành (tính theo tháng)
+//        - Hãy nhập vào một danh sách các mặt hàng.
+//        - Tìm mặt hàng có số lượng tồn nhiều nhất.
+//        - Tìm mặt hàng có số lượng tồn ít nhất.
+//        - Tìm mặt hàng có giá tiền cao nhất.
+//        - In ra những mặt hàng có thời gian bảo hành lớn hơn 12 tháng.
+//        - Sắp xếp các mặt hàng theo thứ tự tăng dần của số lượng tồn.
 class Bai6 {
     private static Scanner sc = new Scanner(System.in);
 
@@ -1013,6 +1093,15 @@ class Bai6 {
     }
 }
 
+//    Bài 7. Viết chương trình quản lý hồ sơ nhân viên trong một công ty, chương trình thực
+//    hiện những công việc sau:
+//        - Họ và tên. - Ngày sinh. - Lương cơ bản. - Thưởng.
+//        - Phái. - Địa chỉ. - Bảo hiểm xã hội. - Phạt.
+//        - Lương thực lĩnh = lương cơ bản + thưởng – BH xã hội – phạt.
+//        - Nhập vào hồ sơ của các nhân viên trong công ty.
+//        - Xuất danh sách các nhân viên theo lương thực lĩnh giảm dần bằng 2 cách sau:
+//             Cấp phát vùng nhớ tĩnh.
+//             Cấp phát vùng nhớ động.
 class Bai7 {
 
     private static class NhanVien {
@@ -1037,11 +1126,34 @@ class Bai7 {
         System.out.print("Ho va ten: ");
         nv.hoTen = sc.nextLine();
 
-        System.out.print("Ngay sinh: ");
-        nv.ngaySinh = sc.nextLine();
+    // Nhập ngày sinh hợp lệ theo định dạng dd/MM/yyyy
+        java.time.format.DateTimeFormatter fmt =
+                java.time.format.DateTimeFormatter.ofPattern("dd/MM/uuuu")
+                        .withResolverStyle(java.time.format.ResolverStyle.STRICT);
 
-        System.out.print("Phai: ");
-        nv.phai = sc.nextLine();
+        while (true) {
+            System.out.print("Ngay sinh (dd/MM/yyyy): ");
+            nv.ngaySinh = sc.nextLine();
+
+            try {
+                java.time.LocalDate.parse(nv.ngaySinh, fmt);
+                break;
+            } catch (java.time.format.DateTimeParseException e) {
+                System.out.println("Ngay sinh khong hop le! Vui long nhap lai.");
+            }
+        }
+
+    // Nhập phái: 0 là nữ, 1 là nam
+        while (true) {
+            System.out.print("Phai (0: Nu, 1: Nam): ");
+            nv.phai = sc.nextLine();
+
+            if (nv.phai.equals("0") || nv.phai.equals("1")) {
+                break;
+            }
+
+            System.out.println("Phai khong hop le! Chi duoc nhap 0 hoac 1.");
+        }
 
         System.out.print("Dia chi: ");
         nv.diaChi = sc.nextLine();
@@ -1165,6 +1277,10 @@ class Bai7 {
     }
 }
 
+//    Bài 8. Sử dụng cấu trúc để viết chương trình tính khoảng cách giữa 2 ngày.
+//    Ví dụ ngay1= 15/11/2007
+//    ngay2= 11/9/2009
+//    in ra ngay 15/11/2007 va ngay 11/8/2009 cach nhau 26 ngay 9 thang va 1 nam
 class Bai8 {
 
     private static class Ngay {
@@ -1174,14 +1290,23 @@ class Bai8 {
     }
 
     private static void NhapNgay(Ngay n, java.util.Scanner sc) {
-        System.out.print("Nhap ngay: ");
-        n.ngay = sc.nextInt();
+        System.out.print("Nhap nam: ");
+        n.nam = sc.nextInt();
 
         System.out.print("Nhap thang: ");
         n.thang = sc.nextInt();
+        while (n.thang < 1 || n.thang > 12) {
+            System.out.print("Nhap lai thang (1 - 12): ");
+            n.thang = sc.nextInt();
+        }
 
-        System.out.print("Nhap nam: ");
-        n.nam = sc.nextInt();
+        int max = SoNgayTrongThang(n.thang, n.nam);
+        System.out.print("Nhap ngay: ");
+        n.ngay = sc.nextInt();
+        while (n.ngay < 1 || n.ngay > max) {
+            System.out.print("Nhap lai ngay (1 - " + max + "): ");
+            n.ngay = sc.nextInt();
+        }
     }
 
     private static boolean NamNhuan(int nam) {
@@ -1273,6 +1398,8 @@ class Bai8 {
     }
 }
 
+//    Bài 9. Viết chương trình sử dụng con trỏ cấu trúc để hiển thị giờ, phút, giây ra màn hình,
+//    và tính khoảng cách giữa 2 mốc thời gian.
 class Bai9 {
 
     static class ThoiGian {
@@ -1281,15 +1408,20 @@ class Bai9 {
         int giay;
     }
 
+    private static int NhapSoTrongKhoang(java.util.Scanner sc, String ten, int min, int max) {
+        System.out.print("Nhap " + ten + ": ");
+        int x = sc.nextInt();
+        while (x < min || x > max) {
+            System.out.print("Nhap lai " + ten + " (" + min + " - " + max + "): ");
+            x = sc.nextInt();
+        }
+        return x;
+    }
+
     static void NhapThoiGian(ThoiGian tg, java.util.Scanner sc) {
-        System.out.print("Nhap gio: ");
-        tg.gio = sc.nextInt();
-
-        System.out.print("Nhap phut: ");
-        tg.phut = sc.nextInt();
-
-        System.out.print("Nhap giay: ");
-        tg.giay = sc.nextInt();
+        tg.gio  = NhapSoTrongKhoang(sc, "gio", 0, 23);
+        tg.phut = NhapSoTrongKhoang(sc, "phut", 0, 59);
+        tg.giay = NhapSoTrongKhoang(sc, "giay", 0, 59);
     }
 
     static void XuatThoiGian(ThoiGian tg) {

@@ -49,6 +49,13 @@ public class Buoi3 {
     }
 }
 
+//    Buổi 1
+//        Bài 1
+//            • Xây dựng lớp phân số và quá tải các phép toán trên phân số (+, −, *, /)
+//            • Cài đặt lớp trên
+//            • Viết chương trình cho phép người dùng nhập vào hai phân số
+//        • Yêu cầu:
+//            o Cho phép người dùng chọn 1 trong 4 phép toán (+, −, *, /), thực hiện tính toán theo yêu cầu và hiển thị kết quả ra màn hình
 class Bai11 {
     private int tu;
     private int mau;
@@ -179,6 +186,11 @@ class Bai11 {
     }
 }
 
+//        Bài 2
+//            • Xây dựng lớp nhiệt độ theo độ C và độ F
+//            • Viết chương trình cho phép người dùng nhập vào giá trị độ F và độ C
+//            • Viết chương trình chuyển đổi nhiệt từ F sang C và ngược lại
+//            • Hiển thị kết quả ra màn hình
 class Bai21 {
 
     static class NhietDo {
@@ -234,7 +246,13 @@ class Bai21 {
     }
 }
 
-
+//        Bài 3. Cho 1 Sv có thông tin là MSSV kiểu số nguyên, họ tên kiểu chuỗi ký tự, điểm trung bình số thực.
+//            • Hiển thị menu có các chức năng:
+//                – Hiển thị danh sách thông tin SV ra màn hình
+//                – Cập nhật thông tin 1 SV theo MSSV nhập vào
+//                – Tạo mới danh sách SV
+//                – Lưu danh sách thông tin
+//                – Xóa 1 Sv theo MSSV
 class Bai31 {
 
     static class SinhVien implements Serializable {
@@ -414,6 +432,12 @@ class Bai31 {
     }
 }
 
+//        Bài 3
+//            • Xây dựng lớp Sinh viên (MSSV, tên SV, Điểm RL) và Danh sách sinh viên
+//            • Thực hiện cài đặt 2 lớp trên với Danh sách sinh viên chứa Sinh viên
+//            • Viết chương trình cho phép người dùng nhập vào thông tin từng Sinh viên
+//            • Viết chương trình cho phép người dùng nhập vào thông tin từng Sinh viên từ tập tin Excel
+//            • Viết chương trình chuyển đổi dữ liệu từ tập tin Excel thành dữ liệu kiểu XML
 class Bai41 {
 
     // Lop Sinh vien
@@ -606,7 +630,8 @@ class Bai41 {
 }
 
 
-// Buoi 2
+//    Buổi 2
+//        Bài 1: Viết chương trình nhập vào số nguyên, kiểm tra số đã nhập là số âm hay số dương.
 class Bai12 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -623,6 +648,7 @@ class Bai12 {
     }
 }
 
+//        Bài 2: Viết chương trình tính tích: 1*2*3*4*5*....*n, trong đó n nhập từ phim.
 class Bai22 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -644,7 +670,7 @@ class Bai22 {
         System.out.println("Tich = " + tich);
     }
 }
-
+//        Bài 3: Viết chương trình tìm ước chung lớn nhất (UCLN) của hai số nguyên a và b.
 class Bai32 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -668,6 +694,10 @@ class Bai32 {
     }
 }
 
+//        Bài 1. Viết chương trình nhập vào đơn giá một mặt hàng, và số lượng bán của mặt hàng.
+//        Tính tiền khách phải trả, với thông tin như sau:
+//        Thành tiền: đơn giá * số lượng
+//        Giảm giá: Nếu thành tiền > 100, thì giảm 3% thành tiền, ngược lại không giảm
 class Bai122 {
     public static void main(String[] args) {
         java.util.Scanner sc = new java.util.Scanner(System.in);
@@ -693,6 +723,14 @@ class Bai122 {
     }
 }
 
+//        Bài 2. Viết chương trình tính tiền phải trả trong tháng:
+//            Từ 01 – 100KW: 5$
+//            Từ 101-150KW : 7$
+//            Từ 151-200KW: 10$
+//            Từ 201 – 300KW: 15$
+//            Từ 301KW trở lên: 20$
+//        Ví dụ: Nếu điện tiêu thụ 50KW thì tiền điện phải trả là: 50*5 =250$.
+//        Nếu điện tiêu thụ 101KW thì tiền điện phải trả là: 100*5+1*7 = 507$.
 class Bai222 {
     public static void main(String[] args) {
         java.util.Scanner sc = new java.util.Scanner(System.in);
@@ -724,7 +762,7 @@ class Bai222 {
         System.out.println("Tien dien phai tra: " + tien + "$");
     }
 }
-
+//        Bài 3. Viết chương trình in bảng cửu chương từ 1 đến 9 theo hàng dọc.
  class Bai322 {
     public static void main(String[] args) {
         for (int i = 1; i <= 9; i++) {
@@ -737,6 +775,7 @@ class Bai222 {
     }
 }
 
+//        Bài 4. Viết chương trình in bảng cửu chương từ 1 đến 9 theo hàng ngang.
 class Bai422 {
     public static void main(String[] args) {
         for (int i = 1; i <= 10; i++) {
@@ -748,6 +787,7 @@ class Bai422 {
     }
 }
 
+//        Bài 5. Viết chương trình vẽ hình chữ nhật có kích thước d x r, trong đó d là chiều dài, và r là chiều rộng được nhập từ phím.
 class Bai522 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -771,6 +811,9 @@ class Bai522 {
         }
     }
 }
+
+//    3 . Bài tập nâng cao
+//        Bài 1. Viết chương trình hỗ trợ cách giải phương trình bậc 2 (ax+bx+c=0).
 
 class Bai133 {
     public static void main(String[] args) {
@@ -813,6 +856,7 @@ class Bai133 {
     }
 }
 
+//        Bài 2. In tam giác cân rỗng.
 class Bai233 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -841,7 +885,7 @@ class Bai233 {
         sc.close();
     }
 }
-
+//        Bài 6. Viết chương trình vẽ hình chữ nhật có kích thước d x r, trong đó d là chiều dài, và r là chiều rộng được nhập từ phím.
 class Bai63 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -871,6 +915,11 @@ class Bai63 {
     }
 }
 
+//        Bài 7. Viết chương trình tính tổng: 1 +2+...+n với n >0 nhập từ bàn phím.
+//            Bộ giá trị kiểm tra:
+//                n = 1: S1 = 1;
+//                n = 2: S1 = 5;
+//                n = 3: S1 = 14
 
 class Bai73 {
     public static void main(String[] args) {
@@ -892,7 +941,7 @@ class Bai73 {
     }
 }
 
-
+//        Bài 8. Kiểm tra n có phải là số nguyên tố hay không?
 class Bai83 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -916,7 +965,7 @@ class Bai83 {
     }
 }
 
-
+//        Bài 9. Liệt kê các số nguyên tố <n
 class Bai93 {
     private static boolean isPrime(int n) {
         if (n < 2) {
@@ -950,7 +999,7 @@ class Bai93 {
     }
 }
 
-
+//        Bài 10. Nhập dãy số nguyên (nhập số 0 thì dừng) Tìm tổng dãy số vừa nhập
 class Bai103 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -973,6 +1022,9 @@ class Bai103 {
         System.out.println("Tong day so = " + sum);
     }
 }
+//    4. Bài tập về nhà
+//        Bài 2. Viết chương trinh xuất số có 2 chữ số sao cho các chữ số khác nhau đôi một. Ví dụ: danh sách các số thỏa yêu cầu:
+//        Danh sách các so co 2 chu so doi mot khác nhau là: 10, 12, 13, ..., 20, 21, 23, ..., 98
 class Bai243 {
     public static void main(String[] args) {
         System.out.println("Danh sach cac so co 2 chu so doi mot khac nhau la:");
@@ -988,7 +1040,7 @@ class Bai243 {
         System.out.println();
     }
 }
-
+//        Bài 3. Viết chương trình in ra tất cả các số lẽ nhỏ hơn n, trong đó n nhập từ bàn phím.
 class Bai343 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -1006,6 +1058,7 @@ class Bai343 {
     }
 }
 
+//        Bài 4. Viết chương trình đếm số lượng số chẵn trong [n, m], trong đó n, m nhập từ bàn phím.
 class Bai443 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -1033,8 +1086,8 @@ class Bai443 {
         System.out.println("So luong so chan trong [" + n + ", " + m + "] la: " + dem);
     }
 }
-
-
+//    Buổi 4
+//        Bài 1: Viết phương thức nhập mảng a gồm n phần tử, xuất mảng a.
 class Bai114 {
     static Scanner sc = new Scanner(System.in);
 
@@ -1069,7 +1122,13 @@ class Bai114 {
     }
 }
 
-
+//        Bài 1: Cho mảng 1 chiều chứa các số nguyên. Viết phương thức thực hiện:
+//            Nhập mảng a gồm n phần tử. Xuất mảng a.
+//            Liệt kê các phần tử lẻ ở vị trị chẵn.
+//            Liệt kê các số nguyên tố trong mảng.
+//            Tìm phần tử âm đầu tiên trong mảng.
+//            Tìm max, min của dãy.
+//            Tính tổng các phần tử trong mảng.
 class Bai124 {
     static Scanner sc = new Scanner(System.in);
 
@@ -1203,6 +1262,11 @@ class Bai124 {
     }
 }
 
+//        Bài 3. Nhập chuỗi s (là họ tên), Viết phương thức thực hiện các yêu cầu sau:
+//            S có phải là chuỗi đối xứng không?
+//            Đổi ký tự đầu từ thành chữ hoa
+//            Đổi ký tự thường thành chuỗi hoa và ngược lại
+//            Có bao nhiêu nguyên âm, phụ âm, khoảng trắng trong chuỗi s
 class Bai324 {
     static Scanner sc = new Scanner(System.in);
 
@@ -1298,6 +1362,8 @@ class Bai324 {
     }
 }
 
+//    3. Bài tập nâng cao
+//        Bài 1. Thực hiện phép cộng 2 đa thức trên mảng một chiều. Với đa thức cho trước như sau: DaThuc {int Bac, int ChiSoDaThuc[]};
 class Bai134 {
     static Scanner sc = new Scanner(System.in);
 
@@ -1406,6 +1472,12 @@ class Bai134 {
         Xuat(R);
     }
 }
+
+//        Bài 2. Cho một ma trận nguyên kích thước m*n. Viết phương thức tìm:
+//            Số nhỏ nhất, lớn nhất (kèm chỉ số) của ma trận.
+//            Số nhỏ nhất, lớn nhất (kèm chỉ số) của từng hàng của ma trận.
+//            Số nhỏ nhất, lớn nhất (kèm chỉ số) của đường chéo chính của ma trận.
+//            Viết phương thức tìm giá trị phần tử xuất hiện nhiều nhất trong dòng i, nếu có nhiều phần tử có số lần xuất hiện bằng nhau thì xuất phần tử đầu tiên.
 
 class Bai234 {
     static Scanner sc = new Scanner(System.in);
@@ -1563,6 +1635,12 @@ class Bai234 {
     }
 }
 
+//        Bài 3. Nhập chuỗi s (là họ tên). Viết phương thức thực hiện các yêu cầu sau:
+//            Xóa khoảng trắng thừa trong chuỗi s.
+//            Có bao nhiêu từ trong chuỗi s
+//            Lấy ra họ
+//            Lấy ra tên
+//            Lấy ra họ lót (nếu có)
 class Bai35 {
     private static String s;
 
@@ -1627,6 +1705,9 @@ class Bai35 {
     }
 }
 
+//    4. Bài tập về nhà
+//        Bài 1. Viết phương thức tính tổng các phần tử cực đại trong mảng các số nguyên (phần tử cực đại là phần tử lớn hơn các phần tử xung quanh nó).
+//            Ví dụ: 1 [5] 2 [6] 3 [5] 1 [8] 6
 class Bai145 {
     static Scanner sc = new Scanner(System.in);
 
@@ -1688,6 +1769,11 @@ class Bai145 {
     }
 }
 
+//        Bài 2. Cho ma trận vuông cấp n chứa các số nguyên. Viết phương thức thực hiện các yêu cầu sau:
+//            Liệt đường chéo chính, phụ.
+//            Liệt kê tam giác trên, dưới.
+//            Tổng đường chéo chính, phụ.
+//            Tổng tam giác trên, dưới.
 class Bai245 {
     static Scanner sc = new Scanner(System.in);
     static int[][] a;

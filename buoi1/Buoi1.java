@@ -15,6 +15,10 @@ public class Buoi1 {
     }
 }
 
+//    4. 1. Nhập (hoặc tạo) giá trị cho các phần tử trong mảng hai chiều
+//
+//    Bài 1. Viết hàm nhập mảng hai chiều các số nguyên dương gồm n dòng và m cột (5 < n, m < 200).
+//    Giá trị nhập Khi nhập sai, chương trình báo lỗi và sẽ yêu cầu nhập lại).
 class Bai1 {
 
     public static int[][] nhapMang(Scanner sc) {
@@ -94,6 +98,15 @@ class Bai1 {
     }
 }
 
+//    Bài 2. Viết hàm khởi tạo giá trị các phần tử là ngẫu nhiên cho mảng hai chiều các số
+//    nguyên kích thước n dòng và m cột (2 <= n,m < 50) cho các trường hợp sau:
+//    a. Giá trị của các phần tử được phát sinh ngẫu nhiên và nằm trong khoảng từ -100 đến 100.
+//    b. Giá trị của các phần tử là a[i] [j] = i * j.
+//    c. Giá trị của các phần tử được phát sinh ngẫu nhiên và nằm trong khoảng từ 0 đến 99.
+//    d. Giá trị của các phần tử được phát sinh ngẫu nhiên và phải toàn là số lẻ.
+//    e. Giá trị của các phần tử được phát sinh ngẫu nhiên và phải toàn là số nguyên tố.
+//    f. Giá trị của các phần tử được phát sinh ngẫu nhiên sao cho phần tử a[i][j] chỉ nhận
+//    số chẵn khi i+j là số lẻ và chỉ nhận số lẻ khi i+j là số chẵn.
 class Bai2 {
     static Random rd = new Random();
 
@@ -229,6 +242,12 @@ class Bai2 {
     }
 }
 
+//    Bài 3. Viết hàm xuất mảng hai chiều các số thực A(m x n) trong các trường hợp sau:
+//    a. Thay giá trị số nguyên tố bằng các khoảng trắng, các số khác giữ nguyên giá trị.
+//    b. Thay giá trị của phần tử không nằm trên đường biên bằng các khoảng trắng, các
+//    giá trị trên đường biên được giữ nguyên giá trị.
+//    c. Thay giá trị của phần tử có chỉ số dòng + chỉ số cột là số chẵn bằng các khoảng
+//    trắng, các số khác giữ nguyên giá trị.
 class Bai3 {
 
     // Kiểm tra số nguyên tố
@@ -306,7 +325,15 @@ class Bai3 {
         cauC(A);
     }
 }
-
+//    4.3.1. Thao tác trên toàn bộ các phần tử có trong mảng hai chiều
+//    Viết hàm thực hiện những yêu cầu sau (mỗi yêu cầu được viết thành 1 hàm riêng):
+//    Bài 4. Tính tổng tất cả các số
+//    Bài 5. Tính tổng các số chẵn.
+//    Bài 6. Tính giá trị trung bình cộng
+//    Bài 7. Tính giá trị trung bình nhân
+//    Bài 8. Tính tổng các số nguyên tố.
+//    Bài 9. Tính tổng các số hoàn thiện. Biết rằng số hoàn thiện là số (n) có tổng các ước
+//    số không kể n bằng chính n. Ví dụ 6 là số hoàn thiện vì 1+2+3 = 6
 class Bai431 {
 
     // Bài 4: Tính tổng tất cả các số
@@ -440,7 +467,14 @@ class Bai431 {
         System.out.println("Bai 9 - Tong so hoan thien: " + bai9(A));
     }
 }
-
+//    4.3.2. Thao tác trên dòng có trong mảng hai chiều
+//    Viết hàm thực hiện những yêu cầu sau (mỗi yêu cầu được viết thành 1 hàm riêng):
+//    Bài 10. Tính tổng tất cả các số trên mỗi dòng. Sau đó in ra giá trị tổng dòng lớn nhất.
+//    Bài 11. Tính tổng các số chẵn trên mỗi dòng. Sau đó in ra giá trị tổng các số chẵn lớn nhất.
+//    Bài 12. Tính tổng các số âm (<0) trên mỗi dòng. Sau đó in ra giá trị tổng âm lớn nhất.
+//    Bài 13. Tính giá trị trung bình cộng trên mỗi dòng. Sau đó in ra giá trị tổng trung bình lớn nhất.
+//    Bài 14. Tính tổng các số nguyên tố trên mỗi dòng. Nếu dòng không có số nguyên tố,
+//    xem như tổng của dòng đó là 0.
 class Bai432 {
 
     // Bài 10: Tính tổng mỗi dòng, in tổng dòng lớn nhất
@@ -587,7 +621,8 @@ class Bai432 {
         bai14(A);
     }
 }
-
+//    4.3.3. Thao tác trên các cột có trong mảng hai chiều
+//    Thực hiện tương tự như các yêu cầu có trong bài tập 4.3.2, nhưng thay dòng thành cột.
 class Bai433 {
 
     // Bài 10: Tính tổng mỗi cột, in tổng cột lớn nhất
@@ -734,7 +769,10 @@ class Bai433 {
         bai14(A);
     }
 }
-
+//    4.3.4. Thao tác trên các phần từ nằm trên đường biên trong mảng hai chiều
+//    Bài 15. Tính tổng:
+//    a. Tất cả các số trên đường biên.
+//    b. Tất cả các số KHÔNG thuộc đường biên.
 class Bai15 {
 
     // Bài 15a: Tính tổng tất cả các số trên đường biên
