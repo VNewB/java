@@ -1,0 +1,9 @@
+1. Chạy QLMuaBanXe.sql trong SQL Server (tạo DB + 3 bảng + dữ liệu mẫu).
+2. Sửa URL / USER / PASS trong src/DBConnection.java cho đúng máy.
+3. Tải mssql-jdbc (jar) từ https://learn.microsoft.com/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server
+   và bỏ vào thư mục lib/ (ví dụ lib/mssql-jdbc-12.8.1.jre11.jar).
+4. Biên dịch + chạy (Windows):
+   javac -encoding UTF-8 -cp "lib/*" -d out src/*.java
+   java -cp "out;lib/*" MainFrame
+   (Linux/Mac dùng dấu : thay cho ;)
+   Hoặc tạo project trong NetBeans/IntelliJ/Eclipse, copy 6 file .java, thêm jar vào Libraries.
